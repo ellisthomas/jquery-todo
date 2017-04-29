@@ -11,7 +11,12 @@ $(document).ready(function(){
 	});
 
 
-
+	FbApi.getTodos().then((results) => {
+		console.log("results", results);
+	})
+	.catch((error) => {
+		console.log("getTodos Error", error);
+	});
 
 
 
@@ -20,4 +25,3 @@ $(document).ready(function(){
 
 });
 
-console.log("hello");
