@@ -18,7 +18,6 @@ $(document).ready(function(){
     firebase.initializeApp(apiKeys);
     FbApi.writeDom(apiKeys);
   }).catch((error) => {
-    console.log("keys error", error);
   });
 
 
@@ -37,7 +36,6 @@ $(document).ready(function(){
       $('.list-container').removeClass('hide');
       FbApi.writeDom(apiKeys);
     }).catch((error) => {
-      console.log("addTodo error", error);
     });
     } else {
     	FbApi.addTodo(apiKeys, newTodo).then(() => {
@@ -46,7 +44,6 @@ $(document).ready(function(){
   			$('.list-container').removeClass('hide');
     		FbApi.writeDom(apiKeys);
     	}).catch((error) => {
-    		console.log("addTodo error", error);
     	});
         
       }
@@ -58,7 +55,6 @@ $('.main-container').on('click', '.delete', (event) => {
     FbApi.deleteTodo(apiKeys, event.target.id).then(() => {
       FbApi.writeDom(apiKeys);
     }).catch((error) => {
-      console.log("error in deleteTodo", error);
     });
   });
 
@@ -84,10 +80,22 @@ $('.main-container').on('click', '.delete', (event) => {
     FbApi.editTodo(apiKeys, myTodo, event.target.id).then(() =>{
   		FbApi.writeDom(apiKeys);
   	}).catch((error) => {
-  		console.log("checker error", error);
   	});
   });
 
+
+  $("#registerButton").click(() => {
+    let email = $("#inputEmail").val();
+    let password = $("#inputPassword").val();
+    let usermane = $("#inputUsername").val();
+
+    let user = {email, password};
+    FbApi.registerUser(user).then((response) => {
+      console.log("register response", response);
+    }).catch((error) => {
+      console.log("error in registerUser", error);
+    });
+  });
 
 
 
