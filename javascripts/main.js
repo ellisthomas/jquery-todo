@@ -115,9 +115,9 @@ $('.main-container').on('click', '.delete', (event) => {
 
 
   let clearLogin = () => {
-    $("#inputEmail").val();
-    $("#inputPassword").val();
-    $("#inputUsername").val();
+    $("#inputEmail").val("");
+    $("#inputPassword").val("");
+    $("#inputUsername").val("");
   };
 
   $("#loginButton").click(() => {
@@ -139,7 +139,9 @@ $('.main-container').on('click', '.delete', (event) => {
 
   $("#logout-container").on("click", "#logoutButton", () => {
     clearLogin();
-    // FbApi.logoutUser();
+    FbApi.logoutUser();
+    $("#login-container").removeClass("hide");
+    $(".main-container").addClass("hide");
   });
 
 
