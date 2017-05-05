@@ -21,6 +21,10 @@ var FbApi = ((cats) => {
 			});
 		});
 	};
+
+	cats.credentialsCurrentUser = () => {
+		return firebase.auth().currentUser;
+	};
 	
 	return cats;
 })(FbApi || {});
