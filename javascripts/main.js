@@ -16,7 +16,7 @@ $(document).ready(function(){
   FbApi.firebaseCredentials().then((keys) => {
     apiKeys = keys;
     firebase.initializeApp(apiKeys);
-    FbApi.writeDom(apiKeys);
+    // FbApi.writeDom(apiKeys);
   }).catch((error) => {
   });
 
@@ -73,9 +73,11 @@ $('.main-container').on('click', '.delete', (event) => {
 
   //complete todos
   $('.main-container').on('click', 'input[type="checkbox"]', (event)=>{
-  	let myTodo = {
+  let tempuid = FbApi.credentialsCurrentUser().uid;
+    let myTodo = {
       isCompleted: event.target.checked,
-      task: $(event.target).siblings(".task").html()
+      task: $(event.target).siblings(".task").html(),
+      uid: tempuid
     };
     FbApi.editTodo(apiKeys, myTodo, event.target.id).then(() =>{
   		FbApi.writeDom(apiKeys);
